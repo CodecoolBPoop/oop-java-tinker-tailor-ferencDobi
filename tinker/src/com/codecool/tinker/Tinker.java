@@ -20,12 +20,13 @@ public class Tinker<T> extends ArrayList<T> {
         for (int i = 1; i <= numOfChildren; i++) {
             children.add(i);
         }
+        // index traverses the actual list, pointer traverses a virtual list of children still in the game
         for (int index = rhymeLength - 1, pointer = index; pointer < rhymeLength * numOfChildren; index++) {
-            int child = children.get(index);
-            if (child == 0) continue;
-            if (++pointer % rhymeLength == 0) {
+            int child = children.get(index); // query child
+            if (child == 0) continue; // if child has been eliminated, skip to next iteration
+            if (++pointer % rhymeLength == 0) { // advance the pointer and check if the child should be eliminated
                 System.out.print(child + " ");
-                children.set(index, 0);
+                children.set(index, 0); // eliminate the child
             }
         }
         System.out.println();
